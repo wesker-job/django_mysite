@@ -7,4 +7,3 @@ from restaurants.models import *
 # Create your views here.
 def menu(request):
   rest = Restaurant.objects.all()
-  return render_to_response('restaurant/menu.html',locals())
