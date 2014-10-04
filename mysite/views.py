@@ -1,8 +1,14 @@
 # =#= coding: utf-8 -*-
-#from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django import template
 from django.template.loader import get_template
+
+def welcome(request):
+  if 'user_name' in request.GET:
+    return HttpResponse('Welcome'+request.GET['user_name'])
+  else:
+    return render_to_response('test/welcome.html',locals())
 
 def menu(request):
   food1 = {'name':'cake','price':35, 'comment':'good', 'is_spicy':False}
