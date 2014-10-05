@@ -1,3 +1,4 @@
+# =#= coding: utf-8 -*-
 from django.db import models
 
 # Create your models here.
@@ -23,3 +24,9 @@ class Comment(models.Model):
     email = models.EmailField(max_length=20)
     date_time = models.DateTimeField()
     restaurant = models.ForeignKey(Restaurant)
+    class Meta:
+        ordering = ['date_time']
+        permissions = (
+            ("can_comment", "Can comment"),  # 只有一個權限時，千萬不要忘了逗號！
+
+        )

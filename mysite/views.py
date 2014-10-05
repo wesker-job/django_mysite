@@ -5,6 +5,17 @@ from django import template
 from django.template.loader import get_template
 from django.contrib import auth
 from django.template import RequestContext
+from django.contrib.auth.forms import UserCreationForm
+
+def register(request):
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      return HttpResponseRedirect('/accounts/login')
+  else:
+    form = UserCreationForm()
+  return render_to_response('test/register.html',locals(), context_instance=RequestContext(request))
 
 def index(request):
   return render_to_response('test/index.html', locals(), context_instance=RequestContext(request))

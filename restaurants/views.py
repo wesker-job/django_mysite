@@ -7,6 +7,7 @@ from restaurants.models import *
 import datetime
 from restaurants.forms import *
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def comment(request,id):
@@ -30,6 +31,7 @@ def comment(request,id):
     #f = CommentForm()
     return render_to_response('restaurant/comment.html',locals(), context_instance=RequestContext(request))
 
+@login_required
 def rest_list(request):
   restaurants = Restaurant.objects.all()
   return render_to_response('restaurant/rest_list.html',locals())
